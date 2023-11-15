@@ -108,7 +108,7 @@ app.post("/register", (req, res, next) => {
       return res.status(401).json({ data: encryptedData });
     }
 
-    const uid = crypto.randomUUID().substring(0, 16);
+    const uid = uuid().substring(0, 16);
 
     db.push({ ...decryptedData, uid });
 

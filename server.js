@@ -32,8 +32,9 @@ app.post("/login", (req, res, next) => {
 
     const requestedEmail = decryptedData?.email;
     const requestedPassword = decryptedData?.password;
+    const requestedLoginId = decryptedData?.loginId;
 
-    if (!requestedEmail || !requestedPassword) {
+    if (!requestedEmail || !requestedPassword || !requestedLoginId) {
       return next();
     }
 
@@ -61,6 +62,7 @@ app.post("/login", (req, res, next) => {
       uid: foundUser.uid,
       name: foundUser.name,
       email: foundUser.email,
+      loginId: requestedLoginId,
     });
 
     const encrypedToken = getAutoEncryptedData(token);
